@@ -1,5 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { NETWORK_OPTIONS, type NetworksState } from "./reducer";
+import type { NetworksState } from "./types";
+import { NETWORK_OPTIONS } from "../../constants";
 
 export const selectSelectedKey = (state: { networks: NetworksState }) =>
   state.networks.selectedKey;
@@ -12,6 +13,3 @@ export const selectSelectedNetwork = createSelector(
 
 export const selectIsConnected = (state: { networks: NetworksState }) =>
   state.networks.isConnected;
-
-export const selectNetworkError = (state: { networks: NetworksState }) =>
-  state.networks.error;

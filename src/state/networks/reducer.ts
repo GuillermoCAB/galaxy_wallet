@@ -5,7 +5,6 @@ import { NETWORK_OPTIONS } from "../../constants";
 const initialState: NetworksState = {
   selectedKey: NETWORK_OPTIONS[0].key,
   isConnected: false,
-  error: "",
 };
 
 const networksSlice = createSlice({
@@ -19,12 +18,8 @@ const networksSlice = createSlice({
     setIsConnected(state, action: PayloadAction<boolean>) {
       state.isConnected = action.payload;
     },
-    setNetworkError(state, action: PayloadAction<string>) {
-      state.error = action.payload;
-    },
   },
 });
 
-export const { setSelectedKey, setIsConnected, setNetworkError } =
-  networksSlice.actions;
+export const { setSelectedKey, setIsConnected } = networksSlice.actions;
 export default networksSlice.reducer;

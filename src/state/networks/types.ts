@@ -7,5 +7,4 @@ export interface Network {
 export interface NetworksState {
   selectedKey: string;
   isConnected: boolean;
-  error: string;
 }
