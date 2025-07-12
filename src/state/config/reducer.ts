@@ -10,7 +10,7 @@ const configSlice = createSlice({
   name: "config",
   initialState,
   reducers: {
-    setEncryptionKey(state, action: PayloadAction<CryptoKey>) {
+    setEncryptionKey(state, action: PayloadAction<String>) {
       state.encryptionKey = action.payload;
     },
     setHasVault(state, action: PayloadAction<boolean>) {
