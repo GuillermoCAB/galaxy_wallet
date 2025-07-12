@@ -5,6 +5,7 @@ import { selectEncryptionKey, selectHasVault } from "../state/config/selectors";
 import { useCheckVault } from "../hooks/useCheckVault";
 import { selectIsConnected } from "../state/networks/selectors";
 import { useMemo } from "react";
+import { NewUser } from "./NewUser";
 
 export function ScreenManager() {
   const { isLoading: networkIsLoading } = useConnectToNetwork();
@@ -31,7 +32,7 @@ export function ScreenManager() {
         </div>
       );
 
-    if (isNewUser) return "NewPassword";
+    if (isNewUser) return <NewUser />;
 
     if (!hasVault) return "AddWallet";
 
