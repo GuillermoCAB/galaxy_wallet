@@ -1,0 +1,31 @@
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { ConfigState } from "./types";
+
+const initialState: ConfigState = {
+  isLoading: false,
+  encryptionKey: null,
+  hasVault: false,
+};
+
+const configSlice = createSlice({
+  name: "config",
+  initialState,
+  reducers: {
+    setIsLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
+    },
+    setEncryptionKey(state, action: PayloadAction<CryptoKey>) {
+      state.encryptionKey = action.payload;
+    },
+    setHasVault(state, action: PayloadAction<boolean>) {
+      state.hasVault = action.payload;
+    },
+    resetConfigState(state) {
+      state = initialState;
+    },
+  },
+});
+
+export const { setIsLoading, setEncryptionKey, setHasVault, resetConfigState } =
+  configSlice.actions;
+export default configSlice.reducer;
