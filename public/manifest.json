@@ -11,6 +11,12 @@
   "background": {
     "service_worker": "background.js"
   },
+  "icons": {
+    "16": "gw-logo-icon.png",
+    "32": "gw-logo-icon.png",
+    "48": "gw-logo-icon.png",
+    "128": "gw-logo-icon.png"
+  },
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
   }
