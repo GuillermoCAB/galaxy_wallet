@@ -2,7 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { ConfigState } from "./types";
 
 const initialState: ConfigState = {
-  encryptionKey: null,
+  isAuthenticated: false,
   hasVault: false,
 };
 
@@ -10,8 +10,8 @@ const configSlice = createSlice({
   name: "config",
   initialState,
   reducers: {
-    setEncryptionKey(state, action: PayloadAction<String>) {
-      state.encryptionKey = action.payload;
+    setIsAuthenticated(state, action: PayloadAction<boolean>) {
+      state.isAuthenticated = action.payload;
     },
     setHasVault(state, action: PayloadAction<boolean>) {
       state.hasVault = action.payload;
@@ -22,6 +22,6 @@ const configSlice = createSlice({
   },
 });
 
-export const { setEncryptionKey, setHasVault, resetConfigState } =
+export const { setIsAuthenticated, setHasVault, resetConfigState } =
   configSlice.actions;
 export default configSlice.reducer;

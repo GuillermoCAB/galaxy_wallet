@@ -1,4 +1,4 @@
 export interface ConfigState {
-  encryptionKey: String | null;
+  isAuthenticated: boolean;
   hasVault: boolean;
 }
