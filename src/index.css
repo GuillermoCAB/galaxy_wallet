@@ -1,7 +1,29 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary-100: #F0EFFF;
+  --color-primary-200: #D9D7FF;
+  --color-primary-300: #B6B1FF;
+  --color-primary-400: #928CFF;
+  --color-primary-500: #6E90FF;
+  --color-primary-600: #5172E6;
+  --color-primary-700: #3D57B3;
+  --color-primary-800: #293B80;
+  --color-primary-900: #141C4D;
+
+  --color-secondary-100: #E5FCFC;
+  --color-secondary-200: #C5F5F5;
+  --color-secondary-300: #A0F0F0;
+  --color-secondary-400: #75EBEB;
+  --color-secondary-500: #53E2E2;
+  --color-secondary-600: #38BEBE;
+  --color-secondary-700: #279191;
+  --color-secondary-800: #175E5E;
+  --color-secondary-900: #083131;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Nunito', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,6 +35,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  min-width: 320px;
+  min-height: 600px;
+
+  width: 320px;
+  height: 600px;
 }
 
 a {
@@ -24,47 +52,7 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  font-family: 'Nunito', system-ui, sans-serif;
 }
