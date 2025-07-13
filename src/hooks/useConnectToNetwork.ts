@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "../services";
 import {
@@ -10,34 +10,41 @@ import { parseError } from "../utils";
 
 export function useConnectToNetwork() {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const selectedNetwork = useSelector(selectSelectedNetwork);
   const isConnected = useSelector(selectIsConnected);
 
   const dispatch = useDispatch();
 
+  const tryConnect = useCallback(async () => {
+    if (!selectedNetwork?.url) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await connect(selectedNetwork.url);
+      dispatch(setIsConnected(true));
+    } catch (err) {
+      const parsedError = parseError(err);
+      console.error("Error connecting to network", parsedError);
+
+      dispatch(setIsConnected(false));
+      setError(parsedError);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [selectedNetwork?.url, dispatch]);
+
   useEffect(() => {
     if (!selectedNetwork?.url || isConnected) return;
-
-    const fetchVault = async () => {
-      setIsLoading(true);
-
-      try {
-        await connect(selectedNetwork.url);
-
-        dispatch(setIsConnected(true));
-      } catch (error) {
-        const parsedError = parseError(error);
-        console.error("Error connecting to network", parsedError);
-
-        dispatch(setIsConnected(false));
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchVault();
+    tryConnect();
   }, [isConnected, selectedNetwork?.url, dispatch]);
 
-  return { isLoading };
+  return {
+    isLoading,
+    error,
+    retry: tryConnect,
+  };
 }

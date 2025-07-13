@@ -3,6 +3,8 @@ import { getVault } from "../utils/storage";
 import { useDispatch } from "react-redux";
 import { setHasVault } from "../state/config/reducer";
 import { parseError } from "../utils";
+import type { Wallet } from "../state/wallets/types";
+import { setWallet } from "../state/wallets/reducer";
 
 export function useCheckVault() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,10 +17,13 @@ export function useCheckVault() {
       try {
         const storedVault = await getVault();
 
-        const parsedVault = storedVault ? JSON.parse(storedVault) : null;
+        const parsedVault: Wallet | null = storedVault
+          ? JSON.parse(storedVault)
+          : null;
 
-        if (parsedVault && parsedVault.length) {
+        if (parsedVault) {
           dispatch(setHasVault(true));
+          dispatch(setWallet({ ...parsedVault }));
         }
       } catch (error) {
         const parsedError = parseError(error);
