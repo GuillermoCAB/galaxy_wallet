@@ -16,8 +16,8 @@ const configSlice = createSlice({
     setHasVault(state, action: PayloadAction<boolean>) {
       state.hasVault = action.payload;
     },
-    resetConfigState(state) {
-      state = initialState;
+    resetConfigState() {
+      return initialState;
     },
   },
 });

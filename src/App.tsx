@@ -1,11 +1,14 @@
 import { Provider } from "react-redux";
-import { store } from "./state/store";
+import { persistor, store } from "./state/store";
 import { ScreenManager } from "./screens";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   return (
     <Provider store={store}>
-      <ScreenManager />
+      <PersistGate loading={null} persistor={persistor}>
+        <ScreenManager />
+      </PersistGate>
     </Provider>
   );
 }
