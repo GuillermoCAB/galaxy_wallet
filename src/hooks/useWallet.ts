@@ -35,6 +35,7 @@ export function useWallet() {
         await cryptoWaitReady();
 
         const mnemonic = mnemonicGenerate();
+
         const keyring = new Keyring({ type: "sr25519" });
         const { address } = keyring.addFromUri(mnemonic);
 

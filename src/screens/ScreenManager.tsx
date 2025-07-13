@@ -15,14 +15,13 @@ import { Wallet } from "./Wallet";
 import { ErrorScreen } from "./ErrorScreen";
 
 export function ScreenManager() {
-  const { isLoading: isAutoLockLoading } = useAutoLock();
-
+  const { isLoading: vaultIsLoading } = useCheckVault();
   const {
     isLoading: networkIsLoading,
     error: networkError,
     retry: retryConnectToNetwork,
   } = useConnectToNetwork();
-  const { isLoading: vaultIsLoading } = useCheckVault();
+  const { isLoading: isAutoLockLoading } = useAutoLock();
 
   const hasVault = useSelector(selectHasVault);
   const isAuthenticated = useSelector(selectIsAuthenticated);

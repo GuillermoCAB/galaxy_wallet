@@ -7,3 +7,6 @@ export const NETWORK_OPTIONS: Network[] = [
     key: "testnet",
   },
 ];
+
+export const MOCKED_VALID_MNEMONIC =
+  "boat festival orchard bean below eyebrow empower affair you blanket bless review";
