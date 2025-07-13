@@ -1,69 +1,101 @@
-# React + TypeScript + Vite
+# 🚀 Galaxy Wallet - Chrome Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Galaxy Wallet** is a secure and beautiful Chrome extension wallet designed to help users interact with the **Bittensor (TAO)** network. From generating your wallet to sending transactions and managing your mnemonic, everything happens in orbit — fast, safe, and with cosmic style.
 
-Currently, two official plugins are available:
+## 📦 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🪐 Create and encrypt a new wallet with a password
+- 🔐 Lock/Unlock session with secure password verification
+- 🌌 View your address and real-time TAO balance
+- 📜 View recent transactions (sent and received)
+- 🚀 Smooth onboarding flow with mnemonic validation
+- 🛰️ Handles connection drops gracefully
+- 🌈 Fully responsive and galaxy-themed UI
 
-## Expanding the ESLint configuration
+## 🧱 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Layer            | Technology                                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------------------------- |
+| Frontend         | [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)                             |
+| Build Tool       | [Vite](https://vitejs.dev/)                                                                             |
+| UI Styling       | [Tailwind CSS](https://tailwindcss.com/), [Lucide Icons](https://lucide.dev/icons)                      |
+| State Management | [Redux Toolkit](https://redux-toolkit.js.org/), [redux-persist](https://github.com/rt2zz/redux-persist) |
+| Blockchain SDK   | [@polkadot/api](https://polkadot.js.org/docs/api/)                                                      |
+| Encryption       | [crypto-js](https://www.npmjs.com/package/crypto-js)                                                    |
+| Utilities        | [classnames](https://www.npmjs.com/package/classnames)                                                  |
+| Dev Tools        | ESLint, TypeScript ESLint, @types/chrome                                                                |
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+> All dependencies are managed using Vite and yarn, optimized for Chrome extension development.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🧰 Setup & Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Install Dependencies
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Build the App Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+or use watch to automatically generate new build on update
+
+```bash
+npm run dev:watch
+```
+
+### 3. Load the Extension in Chrome
+
+- Open Chrome and go to `chrome://extensions`
+
+- Enable Developer Mode
+
+- Click on Load unpacked
+
+- Select the `dist` folder from the project root
+
+### 4. Local Development Tip
+
+For local development I strongly suggest using using the `dev:watch`, to keep the dist folder up to date, with a addon like [Extensions Reloader ](https://chromewebstore.google.com/detail/extensions-reloader/fimgfedafeadlieiabdeeaodndnlbhid) so you can quickly update the Galaxy Wallet with the new dist build files whenever you update the code.
+
+## 📘 Usage Instructions
+
+### 🧑‍🚀 First-Time Setup
+
+1. **Launch Wallet** – Set a strong password
+2. **Recovery Phrase** – Save your 12-word mnemonic securely
+3. **Mnemonic Checkpoint** – Confirm selected words to proceed
+4. **Galaxy Dashboard** – View address, balance and transactions
+
+### 🔓 Unlocking Wallet
+
+After being locked (manually or by timeout), the user must re-enter the password to unlock access.
+
+### 🔐 Lock Wallet
+
+Locking the wallet clears the session and requires password to re-enter. Trigger this from the side menu.
+
+## 📸 Screenshots
+
+| Feature                  | Preview                                          |
+| ------------------------ | ------------------------------------------------ |
+| Wallet Dashboard         | ![Wallet](./screenshots/wallet.png)              |
+| Connection Error         | ![Error](./screenshots/error.png)                |
+| Lock Modal               | ![Lock Modal](./screenshots/lock-modal.png)      |
+| Unlock Wallet            | ![Unlock](./screenshots/unlock.png)              |
+| Launch Wallet (Password) | ![Launch](./screenshots/launch.png)              |
+| Show Mnemonic            | ![Mnemonic](./screenshots/show-mnemonic.png)     |
+| Validate Mnemonic        | ![Validate](./screenshots/validate-mnemonic.png) |
+| Side Menu                | ![Menu](./screenshots/menu.png)                  |
+
+## ⚠️ Disclaimer
+
+Galaxy Wallet is an educational and demonstration project. It does not store keys remotely and no data is sent to third-party services.
+
+## 🧑‍💻 Author
+
+Made by **Gui Benitez**  
+Connect on [LinkedIn](https://linkedin.com/in/GuillermoCAB)
