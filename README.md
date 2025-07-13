@@ -14,16 +14,17 @@
 
 ## 🧱 Tech Stack
 
-| Layer            | Technology                                                                                              |
-| ---------------- | ------------------------------------------------------------------------------------------------------- |
-| Frontend         | [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)                             |
-| Build Tool       | [Vite](https://vitejs.dev/)                                                                             |
-| UI Styling       | [Tailwind CSS](https://tailwindcss.com/), [Lucide Icons](https://lucide.dev/icons)                      |
-| State Management | [Redux Toolkit](https://redux-toolkit.js.org/), [redux-persist](https://github.com/rt2zz/redux-persist) |
-| Blockchain SDK   | [@polkadot/api](https://polkadot.js.org/docs/api/)                                                      |
-| Encryption       | [crypto-js](https://www.npmjs.com/package/crypto-js)                                                    |
-| Utilities        | [classnames](https://www.npmjs.com/package/classnames)                                                  |
-| Dev Tools        | ESLint, TypeScript ESLint, @types/chrome                                                                |
+| Layer            | Technology                                                                                                            |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Frontend         | [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)                                           |
+| Build Tool       | [Vite](https://vitejs.dev/)                                                                                           |
+| UI Styling       | [Tailwind CSS](https://tailwindcss.com/), [Lucide Icons](https://lucide.dev/icons)                                    |
+| State Management | [Redux Toolkit](https://redux-toolkit.js.org/), [redux-persist](https://github.com/rt2zz/redux-persist)               |
+| Blockchain SDK   | [@polkadot/api](https://polkadot.js.org/docs/api/)                                                                    |
+| Encryption       | [crypto-js](https://www.npmjs.com/package/crypto-js)                                                                  |
+| Utilities        | [classnames](https://www.npmjs.com/package/classnames)                                                                |
+| Testing          | [Vitest](https://vitest.dev/), [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro) |
+| Dev Tools        | ESLint, TypeScript ESLint, @types/chrome                                                                              |
 
 > All dependencies are managed using Vite and yarn, optimized for Chrome extension development.
 
@@ -77,6 +78,24 @@ After being locked (manually or by timeout), the user must re-enter the password
 ### 🔐 Lock Wallet
 
 Locking the wallet clears the session and requires password to re-enter. Trigger this from the side menu.
+
+## 🧪 Testing
+
+Core functionalities are covered with unit tests using **[Vitest](https://vitest.dev/)**.
+
+### Run all tests:
+
+```bash
+npm run test
+```
+
+Test coverage includes:
+
+- Wallet creation and encryption
+- Password validation
+- Balance formatting and fetching
+- Date formatting
+- Transaction history parsing and filtering
 
 ## 📸 Screenshots
 
