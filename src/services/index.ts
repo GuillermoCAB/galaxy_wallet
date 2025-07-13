@@ -1,1 +1,2 @@
-export * from "./btApi";
+export * from "./api";
+export * from "./bittensorService";
