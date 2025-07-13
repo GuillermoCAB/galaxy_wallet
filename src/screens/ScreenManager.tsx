@@ -1,45 +1,51 @@
 import { GlobalLoader } from "../components";
 import { useSelector } from "react-redux";
-import { useConnectToNetwork } from "../hooks";
+import { useAutoLock, useConnectToNetwork } from "../hooks";
 import {
   selectIsAuthenticated,
   selectHasVault,
 } from "../state/config/selectors";
-import { useCheckVault } from "../hooks/useCheckVault";
+import { useCheckVault } from "../hooks";
 import { selectIsConnected } from "../state/networks/selectors";
 import { useMemo } from "react";
 import { NewUser } from "./NewUser";
-import MainLayout from "../components/MainLayout";
+import MainLayout from "../components/organisms/MainLayout";
+import { UnlockWallet } from "./UnlockWallet";
+import { Wallet } from "./Wallet";
+import { ErrorScreen } from "./ErrorScreen";
 
 export function ScreenManager() {
-  const { isLoading: networkIsLoading } = useConnectToNetwork();
+  const { isLoading: isAutoLockLoading } = useAutoLock();
+
+  const {
+    isLoading: networkIsLoading,
+    error: networkError,
+    retry: retryConnectToNetwork,
+  } = useConnectToNetwork();
   const { isLoading: vaultIsLoading } = useCheckVault();
 
   const hasVault = useSelector(selectHasVault);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const isConnected = useSelector(selectIsConnected);
-  const isLoading = networkIsLoading || vaultIsLoading;
+  const isLoading = networkIsLoading || vaultIsLoading || isAutoLockLoading;
 
   const ScreenToRender = useMemo(() => {
-    console.log("loggui ScreenManager rendering", {
-      hasVault,
-      isAuthenticated,
-      isConnected,
-    });
-
-    if (!isConnected)
+    if (!isConnected || networkError)
       return (
-        <div className="p-4 w-full h-full">
-          Network not connected. Please select a network and try again.
-        </div>
+        <ErrorScreen
+          title="Lost Connection"
+          message="We couldn't establish a stable link with the blockchain network. Your spaceship is offline and drifting — no transmissions can be sent or received right now. Please check your internet connection."
+          action={() => retryConnectToNetwork()}
+          actionText="Retry Connection"
+        />
       );
 
     if (!hasVault) return <NewUser />;
 
-    if (!isAuthenticated) return "UnlockWallet";
+    if (!isAuthenticated) return <UnlockWallet />;
 
-    return "Wallet";
-  }, [isConnected, isAuthenticated, hasVault]);
+    return <Wallet />;
+  }, [isConnected, isAuthenticated, hasVault, isLoading]);
 
   if (isLoading) {
     return <GlobalLoader />;
