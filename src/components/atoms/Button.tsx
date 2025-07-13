@@ -31,8 +31,8 @@ const colorStyles: Record<string, Record<string, string>> = {
       "border border-secondary-500 text-secondary-500 hover:opacity-80",
   },
   invisible: {
-    primary: "text-primary-500 hover:opacity-80",
-    secondary: "text-secondary-500 hover:opacity-80",
+    primary: "text-primary-500 hover:bg-gray-100/10 transition-all",
+    secondary: "text-secondary-500 hover:bg-gray-100/10 transition-all",
   },
 };
 

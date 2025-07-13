@@ -1,4 +1,3 @@
-export * from "./Button";
-export * from "./GlobalLoader";
-export * from "./MainLayout";
-export * from "./PasswordInput";
+export * from "./atoms";
+export * from "./molecules";
+export * from "./organisms";
