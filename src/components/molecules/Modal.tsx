@@ -11,7 +11,7 @@ interface ModalProps {
   cancelText?: string;
 }
 
-export function Modal({
+export const Modal: React.FC<ModalProps> = ({
   isOpen,
   title,
   text,
@@ -20,7 +20,7 @@ export function Modal({
   onCancel,
   confirmText = "Confirm",
   cancelText = "Cancel",
-}: ModalProps) {
+}) => {
   if (!isOpen) return null;
 
   return (
@@ -53,4 +53,4 @@ export function Modal({
       </div>
     </>
   );
-}
+};

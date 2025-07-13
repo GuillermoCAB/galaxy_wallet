@@ -8,7 +8,7 @@ const NEW_USER_STEPS = {
   VALIDATE_MNEMONIC: "VALIDATE_MNEMONIC",
 };
 
-export function NewUser() {
+export const NewUser = () => {
   const [currentStep, setCurrentStep] = useState(NEW_USER_STEPS.CREATE_WALLET);
   const [mnemonic, setMnemonic] = useState("");
   const [draftWallet, setDraftWallet] = useState<Wallet | null>(null);
@@ -53,4 +53,4 @@ export function NewUser() {
   }, [currentStep]);
 
   return RenderStep;
-}
+};

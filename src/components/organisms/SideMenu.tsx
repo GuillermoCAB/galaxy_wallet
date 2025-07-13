@@ -3,7 +3,7 @@ import { Menu as MenuIcon, Lock } from "lucide-react";
 import { Button, Overlay } from "../atoms";
 import { ConfirmLockWalletModal } from "./modals/ConfirmLockWalletModal";
 
-export function SideMenu() {
+export const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const sidebarRef = useRef<HTMLDivElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -73,4 +73,4 @@ export function SideMenu() {
       />
     </>
   );
-}
+};

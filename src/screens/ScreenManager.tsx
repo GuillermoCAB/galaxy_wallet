@@ -1,4 +1,4 @@
-import { GlobalLoader } from "../components";
+import { GlobalLoader, MainLayout } from "../components";
 import { useSelector } from "react-redux";
 import { useAutoLock, useConnectToNetwork } from "../hooks";
 import {
@@ -9,12 +9,11 @@ import { useCheckVault } from "../hooks";
 import { selectIsConnected } from "../state/networks/selectors";
 import { useMemo } from "react";
 import { NewUser } from "./NewUser";
-import MainLayout from "../components/organisms/MainLayout";
 import { UnlockWallet } from "./UnlockWallet";
 import { Wallet } from "./Wallet";
 import { ErrorScreen } from "./ErrorScreen";
 
-export function ScreenManager() {
+export const ScreenManager = () => {
   const { isLoading: vaultIsLoading } = useCheckVault();
   const {
     isLoading: networkIsLoading,
@@ -51,4 +50,4 @@ export function ScreenManager() {
   }
 
   return <MainLayout>{ScreenToRender}</MainLayout>;
-}
+};

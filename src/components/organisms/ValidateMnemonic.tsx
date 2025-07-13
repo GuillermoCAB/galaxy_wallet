@@ -11,11 +11,11 @@ type MnemonicCheckpointProps = {
   draftWallet: Wallet | null;
 };
 
-export function ValidateMnemonic({
+export const ValidateMnemonic: React.FC<MnemonicCheckpointProps> = ({
   mnemonic,
   goBack,
   draftWallet,
-}: MnemonicCheckpointProps) {
+}) => {
   const words = useMemo(() => mnemonic.trim().split(/\s+/), [mnemonic]);
   const [missingIndices] = useState(() => pickTwoRandomIndices());
   const [userInputs, setUserInputs] = useState<Record<number, string>>({});
@@ -105,4 +105,4 @@ export function ValidateMnemonic({
       </Button>
     </div>
   );
-}
+};

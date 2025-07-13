@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useWallet } from "../hooks";
 import { Copy } from "lucide-react";
 
-export function Wallet() {
+export const Wallet = () => {
   const [copied, setCopied] = useState(false);
   const wallet = useSelector(selectWallet);
 
@@ -83,4 +83,4 @@ export function Wallet() {
       <TransactionHistory />
     </div>
   );
-}
+};

@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { setIsAuthenticated } from "../state/config/reducer";
 import { setDecryptedMnemonic } from "../state/wallets/reducer";
 
-export function UnlockWallet() {
+export const UnlockWallet = () => {
   const dispatch = useDispatch();
 
   const [password, setPassword] = useState("");
@@ -72,4 +72,4 @@ export function UnlockWallet() {
       </div>
     </div>
   );
-}
+};

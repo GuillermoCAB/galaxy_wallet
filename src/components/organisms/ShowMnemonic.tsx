@@ -6,10 +6,10 @@ type ShowMnemonicScreenProps = {
   onContinue: () => void;
 };
 
-export function ShowMnemonic({
+export const ShowMnemonic: React.FC<ShowMnemonicScreenProps> = ({
   mnemonic,
   onContinue,
-}: ShowMnemonicScreenProps) {
+}) => {
   const words = mnemonic.trim().split(/\s+/);
 
   return (
@@ -39,4 +39,4 @@ export function ShowMnemonic({
       </Button>
     </div>
   );
-}
+};

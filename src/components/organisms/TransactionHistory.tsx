@@ -11,7 +11,7 @@ export type Transaction = {
   from?: string;
 };
 
-export function TransactionHistory() {
+export const TransactionHistory = () => {
   const { transactions, isLoading } = useTransactions();
 
   if (isLoading) {
@@ -64,4 +64,4 @@ export function TransactionHistory() {
       </div>
     </div>
   );
-}
+};
