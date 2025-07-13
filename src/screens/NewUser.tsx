@@ -1,62 +1,56 @@
-import { useState } from "react";
-import { PasswordInput, Button } from "../components";
-import { validatePassword } from "../utils";
-import { setIsAuthenticated } from "../state/config/reducer";
-import { parseError } from "../utils/error";
-import { useDispatch } from "react-redux";
+import { useMemo, useState } from "react";
+import type { Wallet } from "../state/wallets/types";
+import { CreateWallet, ShowMnemonic, ValidateMnemonic } from "../components";
 
-import NewUserBG from "../assets/newUserBG.png";
+const NEW_USER_STEPS = {
+  CREATE_WALLET: "CREATE_WALLET",
+  SHOW_MNEMONIC: "SHOW_MNEMONIC",
+  VALIDATE_MNEMONIC: "VALIDATE_MNEMONIC",
+};
 
 export function NewUser() {
-  const dispatch = useDispatch();
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [currentStep, setCurrentStep] = useState(NEW_USER_STEPS.CREATE_WALLET);
+  const [mnemonic, setMnemonic] = useState("");
+  const [draftWallet, setDraftWallet] = useState<Wallet | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
-
-    try {
-      validatePassword(password);
-      dispatch(setIsAuthenticated(true));
-    } catch (error) {
-      const parsedError = parseError(error);
-      console.error("Password validation error:", parsedError);
-      setError(parsedError);
-    } finally {
-      setIsLoading(false);
-    }
+  const onCreateWallet = (wallet: Wallet, mnemonic: string) => {
+    setDraftWallet(wallet);
+    setMnemonic(mnemonic);
+    setCurrentStep(NEW_USER_STEPS.SHOW_MNEMONIC);
   };
 
-  return (
-    <div className="w-full h-full flex flex-col items-center justify-start gap-1">
-      <img className="w-44" src={NewUserBG} />
-      <h1 className="text-2xl font-semibold">Secure Your Launch</h1>
-      <p className="text-sm text-gray-500 mb-auto text-center">
-        Before we lift off, you need to set a strong password. This will be used
-        to create and encrypt your Galaxy Wallet — your secure vessel to explore
-        the Bittensor universe.
-      </p>
-      <div className="w-full h-full flex flex-col mt-4">
-        <form onSubmit={handleSubmit} className="w-full h-full flex flex-col">
-          <PasswordInput
-            value={password}
-            onChange={(newValue) => setPassword(newValue)}
+  const onContinueToValidation = () => {
+    setCurrentStep(NEW_USER_STEPS.VALIDATE_MNEMONIC);
+  };
+
+  const backToShowMnemonic = () => {
+    setCurrentStep(NEW_USER_STEPS.SHOW_MNEMONIC);
+  };
+
+  const RenderStep = useMemo(() => {
+    switch (currentStep) {
+      default:
+      case NEW_USER_STEPS.CREATE_WALLET:
+        return <CreateWallet onCreateWallet={onCreateWallet} />;
+
+      case NEW_USER_STEPS.SHOW_MNEMONIC:
+        return (
+          <ShowMnemonic
+            mnemonic={mnemonic}
+            onContinue={onContinueToValidation}
           />
-          <span className="w-full text-red-500 text-xs font-semibold mt-1 mb-auto">
-            {error}
-          </span>
-          <Button
-            disabled={isLoading}
-            type="submit"
-            customClasses="w-full my-2"
-          >
-            {isLoading ? "Initializing Wallet..." : "Launch Wallet"}
-          </Button>
-        </form>
-      </div>
-    </div>
-  );
+        );
+
+      case NEW_USER_STEPS.VALIDATE_MNEMONIC:
+        return (
+          <ValidateMnemonic
+            mnemonic={mnemonic}
+            goBack={backToShowMnemonic}
+            draftWallet={draftWallet}
+          />
+        );
+    }
+  }, [currentStep]);
+
+  return RenderStep;
 }
