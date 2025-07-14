@@ -28,6 +28,18 @@
 
 > All dependencies are managed using Vite and yarn, optimized for Chrome extension development.
 
+## ⚙️ Requirements
+
+- [Node.js](https://nodejs.org/) version **22.x** or higher
+- [npm](https://www.npmjs.com/) (bundled with Node.js)
+- [nvm](https://github.com/nvm-sh/nvm) (recommended for managing Node versions)
+
+> You can install Node 22 via [nvm](https://github.com/nvm-sh/nvm) with:
+>
+> ```bash
+> nvm install 22
+> ```
+
 ## 🧰 Setup & Installation
 
 ### 1. Install Dependencies
