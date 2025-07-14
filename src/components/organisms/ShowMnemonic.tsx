@@ -24,10 +24,7 @@ export const ShowMnemonic: React.FC<ShowMnemonicScreenProps> = ({
 
       <div className="grid grid-cols-3 gap-3 max-w-md w-full text-left text-sm font-mono bg-gray-100 p-2 rounded">
         {words.map((word, index) => (
-          <div
-            key={index}
-            className="flex items-center text-gray-900 dark:text-white"
-          >
+          <div key={index} className="flex items-center text-gray-900">
             <span className="text-gray-400 w-6">{index + 1}.</span>
             <span>{word}</span>
           </div>
